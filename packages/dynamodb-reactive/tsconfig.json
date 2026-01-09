@@ -2,9 +2,23 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "jsx": "react-jsx"
+    "rootDir": ".",
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "paths": {
+      "@dynamodb-reactive/core": ["../core/src/index.ts"],
+      "@dynamodb-reactive/client": ["../client/src/index.ts"],
+      "@dynamodb-reactive/client/react": ["../client/src/react.tsx"],
+      "@dynamodb-reactive/server": ["../server/src/index.ts"],
+      "@dynamodb-reactive/infra": ["../infra/src/index.ts"]
+    }
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "../core/src/**/*",
+    "../client/src/**/*",
+    "../server/src/**/*",
+    "../infra/src/**/*"
+  ],
   "exclude": ["node_modules", "dist"]
 }

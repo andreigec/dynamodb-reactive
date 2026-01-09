@@ -37,7 +37,6 @@ import type {
 } from 'aws-lambda';
 
 import { extractAffectedKeys } from '../dependency-extractor.js';
-import { evaluateFilters, getRecordKey, sortRecords } from '../filter-evaluator.js';
 import { generatePatches, hasChanges } from '../patcher.js';
 
 /**

@@ -1,1 +1,1 @@
-export * from '@dynamodb-reactive/infra';
+export * from '../../infra/src/index.js';

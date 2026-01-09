@@ -1,1 +1,1 @@
-export * from '@dynamodb-reactive/client/react';
+export * from '../../client/src/react.js';

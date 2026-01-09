@@ -1,1 +1,1 @@
-export * from '@dynamodb-reactive/core';
+export * from '../../core/src/index.js';
