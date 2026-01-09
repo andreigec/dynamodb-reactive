@@ -1,0 +1,72 @@
+{
+  "name": "@dynamodb-reactive/server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Server runtime: Router builder, PartiQL generation, and Dependency Extractor for dynamodb-reactive",
+  "keywords": [
+    "dynamodb",
+    "reactive",
+    "server",
+    "router",
+    "partiql",
+    "aws",
+    "lambda",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "",
+    "directory": "packages/server"
+  },
+  "homepage": "",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "!**/*.spec.*",
+    "!**/*.test.*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build",
+    "format": "eslint src --fix"
+  },
+  "dependencies": {
+    "@dynamodb-reactive/core": "workspace:*",
+    "@aws-sdk/client-dynamodb": "^3.450.0",
+    "@aws-sdk/lib-dynamodb": "^3.450.0",
+    "@aws-sdk/util-dynamodb": "^3.450.0",
+    "@aws-sdk/client-apigatewaymanagementapi": "^3.450.0",
+    "fast-json-patch": "^3.1.1",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.130",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.3.0",
+    "eslint": "8.57.1"
+  },
+  "peerDependencies": {
+    "zod": "^3.22.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "sideEffects": false
+}

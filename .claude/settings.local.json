@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install:*)",
+      "Bash(pnpm build:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm link)",
+      "Bash(npm install)",
+      "Bash(npm run *)",
+      "Bash(npx cdk synth)",
+      "Bash(npx esbuild:*)",
+      "Bash(curl:*)",
+      "Bash(pnpm format:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(pnpm synth:*)",
+      "Bash(aws logs *)",
+      "Bash(MSYS_NO_PATHCONV=1 aws logs *)",
+      "Bash(aws apigatewayv2 get*)",
+      "Bash(aws sts get*)",
+      "Bash(aws apigatewayv2 get*)",
+      "Bash(aws lambda get*)",
+      "Bash(npx cdk deploy:*)",
+      "Bash(find:*)",
+      "Bash(cd:*)",
+      "Bash(pnpm cdk deploy:*)"
+    ]
+  }
+}
