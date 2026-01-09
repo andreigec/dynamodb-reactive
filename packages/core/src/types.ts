@@ -107,7 +107,7 @@ export interface ConnectionEntry {
  */
 export interface FilterCondition {
   type: 'comparison' | 'logical' | 'function';
-  operator?: string;
+  operator: string;
   field?: string;
   value?: unknown;
   value2?: unknown;

@@ -211,7 +211,13 @@ export function createLambdaHandlers() {
   async function streamHandler(event: DynamoDBStreamEvent): Promise<void> {
     const affectedSubscriptions = new Map<
       string,
-      Map<string, { oldImage: Record<string, unknown> | null; newImage: Record<string, unknown> | null }>
+      Map<
+        string,
+        {
+          oldImage: Record<string, unknown> | null;
+          newImage: Record<string, unknown> | null;
+        }
+      >
     >();
 
     // Process each record in the stream
@@ -338,7 +344,9 @@ export function createLambdaHandlers() {
       }
 
       // Re-execute the query using stored metadata
-      const newResult = await executeQueryFromMetadata(queryState.queryMetadata);
+      const newResult = await executeQueryFromMetadata(
+        queryState.queryMetadata,
+      );
 
       // Check if there are changes
       if (!hasChanges(queryState.lastResult, newResult)) {
@@ -389,13 +397,13 @@ export function createLambdaHandlers() {
     const orderClause = sortOrder === 'desc' ? 'ORDER BY SK DESC' : '';
     const limitClause = limit ? `LIMIT ${limit}` : '';
 
-    const statement = `SELECT * FROM "${tableName}" ${whereClause} ${orderClause} ${limitClause}`.trim();
+    const statement =
+      `SELECT * FROM "${tableName}" ${whereClause} ${orderClause} ${limitClause}`.trim();
 
     try {
       // Use PartiQL to execute the query
-      const { ExecuteStatementCommand } = await import(
-        '@aws-sdk/client-dynamodb'
-      );
+      const { ExecuteStatementCommand } =
+        await import('@aws-sdk/client-dynamodb');
       const result = await ddbClient.send(
         new ExecuteStatementCommand({
           Statement: statement,
@@ -416,10 +424,14 @@ export function createLambdaHandlers() {
   /**
    * Build WHERE clause from filter conditions.
    */
-  function buildWhereClause(conditions: QueryMetadata['filterConditions']): string {
+  function buildWhereClause(
+    conditions: QueryMetadata['filterConditions'],
+  ): string {
     if (conditions.length === 0) return '';
 
-    const clauses = conditions.map((c) => buildConditionClause(c)).filter(Boolean);
+    const clauses = conditions
+      .map((c) => buildConditionClause(c))
+      .filter(Boolean);
     if (clauses.length === 0) return '';
 
     return `WHERE ${clauses.join(' AND ')}`;
@@ -428,7 +440,9 @@ export function createLambdaHandlers() {
   /**
    * Build a single condition clause for PartiQL.
    */
-  function buildConditionClause(condition: QueryMetadata['filterConditions'][0]): string {
+  function buildConditionClause(
+    condition: QueryMetadata['filterConditions'][0],
+  ): string {
     const { type, operator, field, value, value2, conditions } = condition;
 
     if (type === 'comparison' && field) {
@@ -448,6 +462,7 @@ export function createLambdaHandlers() {
           return `"${field}" <= ${escapedValue}`;
         case 'between':
           return `"${field}" BETWEEN ${escapedValue} AND ${escapeValue(value2)}`;
+        case undefined:
         default:
           return '';
       }
@@ -460,13 +475,16 @@ export function createLambdaHandlers() {
           return `begins_with("${field}", ${escapedValue})`;
         case 'contains':
           return `contains("${field}", ${escapedValue})`;
+        case undefined:
         default:
           return '';
       }
     }
 
     if (type === 'logical' && conditions) {
-      const subclauses = conditions.map((c) => buildConditionClause(c)).filter(Boolean);
+      const subclauses = conditions
+        .map((c) => buildConditionClause(c))
+        .filter(Boolean);
       if (subclauses.length === 0) return '';
 
       switch (operator) {
@@ -476,6 +494,7 @@ export function createLambdaHandlers() {
           return `(${subclauses.join(' OR ')})`;
         case 'not':
           return subclauses.length > 0 ? `NOT (${subclauses[0]})` : '';
+        case undefined:
         default:
           return '';
       }

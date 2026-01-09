@@ -1,5 +1,7 @@
 import type { JsonPatch } from '@dynamodb-reactive/core';
-import { applyPatch, compare, type Operation } from 'fast-json-patch';
+import jsonpatch, { type Operation } from 'fast-json-patch';
+
+const { applyPatch, compare } = jsonpatch;
 
 /**
  * Generate JSON patches between two objects

@@ -1,5 +1,5 @@
 {
-  "name": "dynamodb-reactive",
+  "name": "main",
   "version": "0.1.0",
   "private": true,
   "description": "A Serverless, Reactive tRPC replacement for AWS",

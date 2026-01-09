@@ -303,6 +303,7 @@ export function createStreamHandler(config: StreamHandlerConfig) {
           return `"${field}" <= ${escapedValue}`;
         case 'between':
           return `"${field}" BETWEEN ${escapedValue} AND ${escapeValue(value2)}`;
+        case undefined:
         default:
           return '';
       }
@@ -315,6 +316,7 @@ export function createStreamHandler(config: StreamHandlerConfig) {
           return `begins_with("${field}", ${escapedValue})`;
         case 'contains':
           return `contains("${field}", ${escapedValue})`;
+        case undefined:
         default:
           return '';
       }
@@ -333,6 +335,7 @@ export function createStreamHandler(config: StreamHandlerConfig) {
           return `(${subclauses.join(' OR ')})`;
         case 'not':
           return subclauses.length > 0 ? `NOT (${subclauses[0]})` : '';
+        case undefined:
         default:
           return '';
       }

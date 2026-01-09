@@ -24,7 +24,8 @@
       "Bash(npx cdk deploy:*)",
       "Bash(find:*)",
       "Bash(cd:*)",
-      "Bash(pnpm cdk deploy:*)"
+      "Bash(pnpm cdk deploy:*)",
+      "Bash(pnpm -r build:*)"
     ]
   }
 }

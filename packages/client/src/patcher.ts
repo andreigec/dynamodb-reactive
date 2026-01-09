@@ -1,6 +1,8 @@
-import { applyPatch, type Operation } from 'fast-json-patch';
+import jsonpatch, { type Operation } from 'fast-json-patch';
 
 import type { JsonPatch } from './types.js';
+
+const { applyPatch } = jsonpatch;
 
 /**
  * Apply JSON patches to a document
