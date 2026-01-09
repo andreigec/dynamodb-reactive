@@ -1,10 +1,10 @@
-# **dynamodb-harness**
+# **dynamodb-reactive**
 
 **Tagline:** A Serverless, Reactive tRPC replacement for AWS - unified package.
 
 ## **1. Overview**
 
-`dynamodb-harness` provides type-safe, real-time DynamoDB subscriptions with automatic JSON Patch diffing over WebSockets.
+`dynamodb-reactive` provides type-safe, real-time DynamoDB subscriptions with automatic JSON Patch diffing over WebSockets.
 
 **Key Features:**
 
@@ -13,9 +13,9 @@
 ## **2. Installation**
 
 ```bash
-npm install dynamodb-harness zod
+npm install dynamodb-reactive zod
 # or
-pnpm add dynamodb-harness zod
+pnpm add dynamodb-reactive zod
 ```
 
 **Peer Dependencies (install as needed):**
@@ -31,12 +31,12 @@ pnpm add dynamodb-harness zod
 
 | Import Path | Purpose |
 | :--- | :--- |
-| `dynamodb-harness` | Core exports (DynamoTable, schemas) |
-| `dynamodb-harness/core` | Core table definitions |
-| `dynamodb-harness/server` | Server runtime (Router, handlers) |
-| `dynamodb-harness/client` | Frontend client |
-| `dynamodb-harness/react` | React hooks |
-| `dynamodb-harness/infra` | CDK constructs |
+| `dynamodb-reactive` | Core exports (DynamoTable, schemas) |
+| `dynamodb-reactive/core` | Core table definitions |
+| `dynamodb-reactive/server` | Server runtime (Router, handlers) |
+| `dynamodb-reactive/client` | Frontend client |
+| `dynamodb-reactive/react` | React hooks |
+| `dynamodb-reactive/infra` | CDK constructs |
 
 ## **4. Quick Start**
 
@@ -44,7 +44,7 @@ pnpm add dynamodb-harness zod
 
 ```typescript
 import { z } from 'zod';
-import { DynamoTable } from 'dynamodb-harness/core';
+import { DynamoTable } from 'dynamodb-reactive/core';
 
 export const TodoTable = new DynamoTable({
   tableName: 'my-table',
@@ -65,7 +65,7 @@ export const TodoTable = new DynamoTable({
 
 ```typescript
 import { z } from 'zod';
-import { initReactive } from 'dynamodb-harness/server';
+import { initReactive } from 'dynamodb-reactive/server';
 import { TodoTable } from './schema';
 
 type AppContext = Record<string, unknown>;
@@ -107,7 +107,7 @@ export type AppRouter = typeof appRouter;
 ### **Step 3: Create API Handler**
 
 ```typescript
-import { createReactiveHandler } from 'dynamodb-harness/server';
+import { createReactiveHandler } from 'dynamodb-reactive/server';
 import { appRouter } from './router';
 
 export const handler = createReactiveHandler({

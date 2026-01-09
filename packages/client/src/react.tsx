@@ -75,7 +75,7 @@ export function ReactiveClientProvider({
   useEffect(() => {
     if (!hasUrl && process.env.NODE_ENV === 'development') {
       console.warn(
-        '[dynamodb-harness] WebSocket URL not configured, real-time features disabled',
+        '[dynamodb-reactive] WebSocket URL not configured, real-time features disabled',
       );
     }
   }, [hasUrl]);

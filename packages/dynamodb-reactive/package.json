@@ -1,5 +1,5 @@
 {
-  "name": "dynamodb-harness",
+  "name": "dynamodb-reactive",
   "version": "0.1.0",
   "description": "A Serverless, Reactive tRPC replacement for AWS DynamoDB",
   "keywords": [

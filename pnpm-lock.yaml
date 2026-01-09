@@ -56,7 +56,7 @@ importers:
         specifier: ^5.3.0
         version: 5.9.3
 
-  packages/dynamodb-harness:
+  packages/dynamodb-reactive:
     dependencies:
       '@dynamodb-reactive/client':
         specifier: workspace:*

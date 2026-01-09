@@ -12,7 +12,7 @@
 export function generateEntryPointCode(): string {
   return `// Auto-generated entry point for reactive Lambda handlers
 // No user code required - all configuration comes from environment variables
-import { createLambdaHandlers } from 'dynamodb-harness/server';
+import { createLambdaHandlers } from 'dynamodb-reactive/server';
 
 const handlers = createLambdaHandlers();
 

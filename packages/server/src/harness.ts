@@ -33,7 +33,7 @@ export interface ReactiveHarness<TContext> {
  * @example
  * ```typescript
  * // harness.ts - This is all you need in your handlers directory
- * import { createReactiveHarness } from 'dynamodb-harness/server';
+ * import { createReactiveHarness } from 'dynamodb-reactive/server';
  * import { appRouter } from './router';
  *
  * export default createReactiveHarness({
